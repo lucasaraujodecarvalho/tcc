@@ -7,7 +7,9 @@ const ProjetoDetalhado = (navigation) => (
 );
 
     ProjetoDetalhado.navigationOptions = ({ navigation }) => ({
-        title: navigation.state.params.projetoDetalhado.siglaTipo
+        title: navigation.state.params.projetoDetalhado.siglaTipo + ' ' +
+               navigation.state.params.projetoDetalhado.numero + '/' +
+               navigation.state.params.projetoDetalhado.ano
     });
 
 export default ProjetoDetalhado;

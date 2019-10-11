@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     productContainer: {
         backgroundColor: '#EEE',
         borderWidth: 1,
-        borderColor: '#3cb371',
+        borderColor: '#0066ff',
         borderRadius: 5,
         padding: 20,
         marginBottom: 20
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         height: 42,
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#3cb371',
+        borderColor: '#0066ff',
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     },
     productButtonText: {
         fontSize: 16,
-        color: '#3cb371',
+        color: '#0066ff',
         fontWeight: 'bold'
     },
     palavraNegrito: {

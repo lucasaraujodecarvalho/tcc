@@ -1,7 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 
 import Main from './pages/main';
-import Product from './pages/product';
 import Deputado from './pages/deputado';
 import DeputadoDetalhado from './pages/deputadoDetalhado';
 import Gastos from './pages/gastos';
@@ -11,7 +10,6 @@ import ProjetoDetalhado from './pages/projetoDetalhado';
 
 export default createStackNavigator ({
     Main,
-    Product,
     Deputado,
     Gastos,
     Projetos,
@@ -22,7 +20,7 @@ export default createStackNavigator ({
 {
     navigationOptions: {
         headerStyle: {
-            backgroundColor: "#3cb371"
+            backgroundColor: "#0066ff"
         },
         headerTintColor: "#FFF"
     },

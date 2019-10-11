@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fafafa'
     },
     productContainer: {
-        backgroundColor: '#3cb371',
+        backgroundColor: '#0066ff',
         borderWidth: 1,
-        borderColor: '#3cb371',
+        borderColor: '#0066ff',
         borderRadius: 5,
         padding: 20,
         marginBottom: 10
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height
       },
     title: {
-        color: "#3cb371",
+        color: "#0066ff",
         marginTop: 50,
         padding: 10,
         textAlign: "center",
