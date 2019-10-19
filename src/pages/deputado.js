@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import api from '../services/api'
+import api from '../services/api';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
 export default class Deputado extends Component {

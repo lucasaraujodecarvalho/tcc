@@ -1,9 +1,16 @@
 import React from 'react';
 
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-const ProjetoDetalhado = (navigation) => (
-    <Text>TESTE DO TESTE DO ProjetosDetalhado</Text>
+const ProjetoDetalhado = ({navigation}) => (
+    <View>
+        <Text>{navigation.state.params.projetoDetalhado.siglaTipo}</Text>
+        <Text>{navigation.state.params.projetoDetalhado.codTipo}</Text>
+        <Text>{navigation.state.params.projetoDetalhado.numero}</Text>
+        <Text>{navigation.state.params.projetoDetalhado.ano}</Text>
+        <Text>{navigation.state.params.projetoDetalhado.ementa}</Text>
+        <Text>{navigation.state.params.projetoDetalhado.ementaDetalhada}</Text>
+    </View>   
 );
 
     ProjetoDetalhado.navigationOptions = ({ navigation }) => ({
