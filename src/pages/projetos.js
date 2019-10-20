@@ -17,7 +17,7 @@ export default class Projetos extends Component {
     }
 
     loadProjetos = async () => {
-        const response = await api.get('/proposicoes');
+        const response = await api.get('/proposicoes?ano=2019&ordem=ASC&ordenarPor=id');
 
         const { dados } = response.data;
 
