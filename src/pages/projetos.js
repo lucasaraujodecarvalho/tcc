@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../services/api'
 
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default class Projetos extends Component {
     static navigationOptions = {
@@ -17,7 +17,7 @@ export default class Projetos extends Component {
     }
 
     loadProjetos = async () => {
-        const response = await api.get('/proposicoes?ano=2019&ordem=ASC&ordenarPor=id');
+        const response = await api.get('/proposicoes');
 
         const { dados } = response.data;
 

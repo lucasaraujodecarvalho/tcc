@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import api from '../services/api';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
@@ -29,7 +29,7 @@ export default class Deputado extends Component {
     renderItem = ({ item }) => (
             <TouchableOpacity style={styles.productContainer}
             onPress={() => {
-                this.props.navigation.navigate('DeputadoDetalhado', { deputadoDetalhado: item });
+                this.props.navigation.navigate('DeputadoDetalhado', { id: item.id, nome:item.nome });
             }}>
                 <ImageBackground 
                     style={{ width:125, height: 125 }}

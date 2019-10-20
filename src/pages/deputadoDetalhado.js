@@ -1,25 +1,55 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+export default class DeputadoDetalhado extends Component {
 
-const DeputadoDetalhado = ({navigation}) => (
-    <View>
-        <Image
-            style={styles.imagemCentro} 
-            source={{uri: navigation.state.params.deputadoDetalhado.urlFoto}}>
-        </Image>
-        <Text>{navigation.state.params.deputadoDetalhado.nome}</Text>
-        <Text>{navigation.state.params.deputadoDetalhado.siglaPartido}</Text>
-        <Text>{navigation.state.params.deputadoDetalhado.siglaUf}</Text>
-        <Text>{navigation.state.params.deputadoDetalhado.email}</Text>
-    </View>   
-);
+    static navigationOptions = ({ navigation }) => {
+        return {
+          title: `DEP. ${navigation.getParam('nome')}`,
+        };
+    };
 
-    DeputadoDetalhado.navigationOptions = ({ navigation }) => ({
-        title: `DEP. ${navigation.state.params.deputadoDetalhado.nome}`
-    });
+    constructor(props) {
+        super(props);
+        this.state = {
+            dados:[],
+            status:[],
+            gabinete:[]
+        }
+        this.componentDidMount = this.componentDidMount.bind(this);
+        const { navigation } = this.props;
+        this.componentDidMount(navigation);
+        
+    }
+    
 
-export default DeputadoDetalhado;
+    componentDidMount(navigation) {
+        this.loadDeputados(navigation);
+    }
+
+    loadDeputados = async (navigation) => {
+        
+        const id =  navigation.getParam('id')
+        let deputado = await api.get(`/deputados/${id}`)
+        const { dados } = deputado.data;
+        let stateTemp = this.state;
+        stateTemp.dados = dados;
+        stateTemp.status = dados.ultimoStatus;
+        stateTemp.gabinete = dados.ultimoStatus.gabinete;
+        this.setState(stateTemp);
+        console.disableYellowBox = true;
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text>{ this.state.dados.nomeCivil }</Text>
+                <Text>{ this.state.status.nome }</Text> 
+                <Text>{ this.state.gabinete.nome }</Text>        
+            </View>
+        );
+    }
+}
 
 
 const styles = StyleSheet.create({

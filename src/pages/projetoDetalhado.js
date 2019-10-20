@@ -9,7 +9,7 @@ const ProjetoDetalhado = ({navigation}) => (
         <Text>{navigation.state.params.projetoDetalhado.numero}</Text>
         <Text>{navigation.state.params.projetoDetalhado.ano}</Text>
         <Text>{navigation.state.params.projetoDetalhado.ementa}</Text>
-        <Text>{navigation.state.params.projetoDetalhado.ementaDetalhada}</Text>
+        <Text>{navigation.state.params.projetoDetalhado.dataApresentacao}</Text>
     </View>   
 );
 
