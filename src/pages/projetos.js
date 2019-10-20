@@ -30,7 +30,8 @@ export default class Projetos extends Component {
     renderItem = ({ item }) => (
             <TouchableOpacity style={styles.productContainer}
             onPress={() => {
-                this.props.navigation.navigate('ProjetoDetalhado', { projetoDetalhado: item });
+                this.props.navigation.navigate('ProjetoDetalhado', 
+                { id: item.id, siglaTipo: item.siglaTipo, numero: item.numero, ano: item.ano});
             }}>
                 <Text>{item.siglaTipo} {item.numero}/{item.ano}</Text>
                 <Text style={styles.palavraNegrito}>Ementa</Text>
