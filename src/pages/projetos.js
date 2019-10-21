@@ -17,7 +17,7 @@ export default class Projetos extends Component {
     }
 
     loadProjetos = async () => {
-        const response = await api.get('/proposicoes?ano=2019&ordem=ASC&ordenarPor=id');
+        const response = await api.get('/proposicoes?siglaTipo=PL&ano=2019&ordem=ASC&ordenarPor=id');
 
         const { dados } = response.data;
 
@@ -69,33 +69,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 20,
         marginBottom: 20
-    },
-    nomeDeputado: {
-        fontSize: 16,
-        marginTop: 5,
-        lineHeight: 24,
-        left: 135
-    },
-    productDescription: {
-        fontSize: 16,
-        marginTop: 5,
-        lineHeight: 24,
-        left: 135
-    },
-    productButton: {
-        height: 42,
-        borderRadius: 5,
-        borderWidth: 2,
-        borderColor: '#0066ff',
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10
-    },
-    productButtonText: {
-        fontSize: 16,
-        color: '#0066ff',
-        fontWeight: 'bold'
     },
     palavraNegrito: {
         fontWeight: 'bold'

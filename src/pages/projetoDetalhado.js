@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 export default class projetoDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -38,9 +38,24 @@ export default class projetoDetalhado extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text>{ this.state.dados.dataApresentacao }</Text>
-                <Text>{ this.state.status.regime }</Text>     
+            <View style={styles.productContainer}>
+                <Text style={styles.nomeProjeto}>{ this.state.dados.siglaTipo } { this.state.dados.numero }/{ this.state.dados.ano }</Text>
+                
+                <Text style={styles.palavraNegrito}>Ementa: </Text>
+                
+                <Text style={styles.separandoItens}>{ this.state.dados.ementa }</Text>
+                
+                <Text style={styles.palavraNegrito}>Regime:</Text>  
+                
+                <Text style={styles.separandoItens}>{ this.state.status.regime }</Text>    
+                
+                <Text style={styles.palavraNegrito}>Despacho: </Text>
+                
+                <Text style={styles.separandoItens}>{ this.state.status.despacho }</Text> 
+                
+                <Text style={styles.palavraNegrito}>Ementa Detalhada: </Text> 
+                
+                <Text style={styles.separandoItens}>{ this.state.dados.ementaDetalhada }</Text>
             </View>
         );
     }
@@ -51,14 +66,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fafafa'
     },
-    list: {
-        padding: 20
-    },
-    imagemCentro: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width:125, 
-        height: 125
+    separandoItens:{ 
+        fontSize: 12,
+        marginBottom: 20
     },
     productContainer: {
         backgroundColor: '#EEE',
@@ -68,52 +78,14 @@ const styles = StyleSheet.create({
         padding: 20,
         marginBottom: 20
     },
-    nomeDeputado: {
+    nomeProjeto: {
         fontSize: 16,
         marginTop: 5,
         lineHeight: 24,
-        left: 135
-    },
-    productDescription: {
-        fontSize: 16,
-        marginTop: 5,
-        lineHeight: 24,
-        left: 135
-    },
-    productButton: {
-        height: 42,
-        borderRadius: 5,
-        borderWidth: 2,
-        borderColor: '#0066ff',
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10
-    },
-    productButtonText: {
-        fontSize: 16,
-        color: '#0066ff',
+        left: 100,
         fontWeight: 'bold'
-    }
-
-
+    },
+    palavraNegrito: {
+        fontWeight: 'bold'
+    },
 });
-
-// const ProjetoDetalhado = ({navigation}) => (
-//     <View>
-//         <Text>{navigation.state.params.projetoDetalhado.siglaTipo}</Text>
-//         <Text>{navigation.state.params.projetoDetalhado.codTipo}</Text>
-//         <Text>{navigation.state.params.projetoDetalhado.numero}</Text>
-//         <Text>{navigation.state.params.projetoDetalhado.ano}</Text>
-//         <Text>{navigation.state.params.projetoDetalhado.ementa}</Text>
-//         <Text>{navigation.state.params.projetoDetalhado.dataApresentacao}</Text>
-//     </View>   
-// );
-
-//     ProjetoDetalhado.navigationOptions = ({ navigation }) => ({
-//         title: navigation.state.params.projetoDetalhado.siglaTipo + ' ' +
-//                navigation.state.params.projetoDetalhado.numero + '/' +
-//                navigation.state.params.projetoDetalhado.ano
-//     });
-
-// export default ProjetoDetalhado;
