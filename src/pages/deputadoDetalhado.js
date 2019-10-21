@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 export default class DeputadoDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -42,11 +42,21 @@ export default class DeputadoDetalhado extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text>{ this.state.dados.nomeCivil }</Text>
-                <Text>{ this.state.status.nome }</Text> 
-                <Text>{ this.state.gabinete.nome }</Text>        
-            </View>
+                <View>
+                    <Image style={styles.imagemCentro}
+                    source={{uri: this.state.status.urlFoto}}/>
+                    <Text style={styles.nomeDeputado}>{ this.state.dados.nomeCivil }</Text>
+                    <Text>{ this.state.status.nomeEleitoral }</Text> 
+                    <Text>{ this.state.status.siglaUf }</Text> 
+                    <Text>{ this.state.status.siglaPartido }</Text> 
+                    <Text>{ this.state.gabinete.telefone }</Text> 
+                    <Text>{ this.state.gabinete.email }</Text>      
+                    <Text>{ this.state.status.situacao }</Text>
+                    <Text>{ this.state.status.condicaoEleitoral }</Text>
+                    <Text>{ this.state.dados.dataNascimento }</Text>
+                    <Text>{ this.state.dados.ufNascimento }</Text>
+                    <Text>{ this.state.dados.municipioNascimento }</Text>
+                </View>
         );
     }
 }
@@ -61,10 +71,9 @@ const styles = StyleSheet.create({
         padding: 20
     },
     imagemCentro: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        left: 105,
         width:125, 
-        height: 125
+        height: 125,
     },
     productContainer: {
         backgroundColor: '#EEE',
@@ -78,7 +87,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginTop: 5,
         lineHeight: 24,
-        left: 135
     },
     productDescription: {
         fontSize: 16,
