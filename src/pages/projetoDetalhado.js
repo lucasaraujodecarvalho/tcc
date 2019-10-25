@@ -13,7 +13,8 @@ export default class projetoDetalhado extends Component {
         super(props);
         this.state = {
             dados:[],
-            status:[]
+            status:[],
+            dadosAutores:[]
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         const { navigation } = this.props;
@@ -22,6 +23,7 @@ export default class projetoDetalhado extends Component {
 
     componentDidMount(navigation) {
         this.loadProjetos(navigation);
+        this.loadAutoresProjetos(navigation);
     }
 
     loadProjetos = async (navigation) => {
@@ -34,6 +36,15 @@ export default class projetoDetalhado extends Component {
         stateTemp.status = dados.statusProposicao;
         this.setState(stateTemp);
         console.disableYellowBox = true;
+    }
+
+    loadAutoresProjetos = async (navigation) => {
+        const id =  navigation.getParam('id')
+        let autores = await api.get(`/proposicoes/${id}/autores`)
+        const { dados } = autores.data;
+        let stateTemp = this.state;
+        stateTemp.dadosAutores = dados;
+        this.setState(stateTemp);
     }
 
     render() {
@@ -56,6 +67,10 @@ export default class projetoDetalhado extends Component {
                 <Text style={styles.palavraNegrito}>Ementa Detalhada: </Text> 
                 
                 <Text style={styles.separandoItens}>{ this.state.dados.ementaDetalhada }</Text>
+
+                <Text style={styles.palavraNegrito}>Autor do Projeto: </Text> 
+                
+                <Text style={styles.separandoItens}>{ this.state.dadosAutores.nome }</Text>
             </View>
         );
     }

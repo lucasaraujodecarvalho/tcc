@@ -71,9 +71,15 @@ const styles = StyleSheet.create({
         padding: 20
     },
     imagemCentro: {
-        left: 105,
-        width:125, 
-        height: 125,
+        left: 100,
+        width:160, 
+        height: 195,
+        backgroundColor: '#0066ff',
+        borderWidth: 1,
+        borderColor: '#0066ff',
+        borderRadius: 5,
+        padding: 20,
+        marginBottom: 20
     },
     productContainer: {
         backgroundColor: '#EEE',
