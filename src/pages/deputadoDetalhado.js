@@ -14,7 +14,8 @@ export default class DeputadoDetalhado extends Component {
         this.state = {
             dados:[],
             status:[],
-            gabinete:[]
+            gabinete:[],
+            valorTotal:[]
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         const { navigation } = this.props;
@@ -25,6 +26,7 @@ export default class DeputadoDetalhado extends Component {
 
     componentDidMount(navigation) {
         this.loadDeputados(navigation);
+        this.loadDeputadosGastos(navigation);
     }
 
     loadDeputados = async (navigation) => {
@@ -37,7 +39,20 @@ export default class DeputadoDetalhado extends Component {
         stateTemp.status = dados.ultimoStatus;
         stateTemp.gabinete = dados.ultimoStatus.gabinete;
         this.setState(stateTemp);
-        console.disableYellowBox = true;
+    }
+
+    loadDeputadosGastos = async (navigation) => {
+        const id =  navigation.getParam('id')
+        let deputado = await api.get(`/deputados/${id}/despesas`)
+        let totalGastos = 0;
+                
+        for (let gasto of deputado.data.dados) {
+            if(gasto.ano=='2019'){
+                totalGastos += gasto.valorLiquido;      
+            }
+        }
+        this.state.valorTotal = totalGastos;
+        this.setState(this.state);
     }
 
     render() {
@@ -56,6 +71,7 @@ export default class DeputadoDetalhado extends Component {
                     <Text>{ this.state.dados.dataNascimento }</Text>
                     <Text>{ this.state.dados.ufNascimento }</Text>
                     <Text>{ this.state.dados.municipioNascimento }</Text>
+                    <Text> Total de Gastos em 2019: R$ {this.state.valorTotal}</Text>
                 </View>
         );
     }
