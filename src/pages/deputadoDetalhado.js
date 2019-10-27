@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { ScrollView, Text, Image, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 export default class DeputadoDetalhado extends Component {
@@ -17,7 +17,8 @@ export default class DeputadoDetalhado extends Component {
             dados:[],
             status:[],
             gabinete:[],
-            valorTotal:[]
+            valorTotal:[],
+            valorTotalDespesas:[]
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         const { navigation } = this.props;
@@ -47,36 +48,45 @@ export default class DeputadoDetalhado extends Component {
         const id =  navigation.getParam('id')
         let deputado = await api.get(`/deputados/${id}/despesas`)
         let totalGastos = 0;
+        let totalDespesas = ""
                 
         for (let gasto of deputado.data.dados) {
-            if(gasto.ano=='2019'){
-                totalGastos += gasto.valorLiquido;      
+            if(gasto.ano == '2019'){
+                totalGastos += gasto.valorLiquido; 
+                totalDespesas = gasto.tipoDespesa;
             }
         }
         this.state.valorTotal = totalGastos;
+        this.state.valorTotalDespesas = totalDespesas;
         this.setState(this.state);
     }
 
     render() {
         return (
-                <View style={styles.productContainer}>
+                <ScrollView style={styles.productContainer}>
                     <Image style={styles.imagemCentro}
                     source={{uri: this.state.status.urlFoto}}/>
-                    <Text style={styles.nomeDeputado}>{ this.state.dados.nomeCivil }</Text>
-                    <Text>{ this.state.status.nomeEleitoral }</Text> 
-                    <Text>{ this.state.status.siglaUf }</Text> 
-                    <Text>{ this.state.status.siglaPartido }</Text> 
-                    <Text><Icon name='phone'size={14}/> {this.state.gabinete.telefone}</Text> 
-                    <Text><Icon name='envelope-o' size={14}/> { this.state.gabinete.email }</Text>      
-                    <Text>{ this.state.status.situacao }</Text>
-                    <Text>{ this.state.status.condicaoEleitoral }</Text>
-                    <Text>{ moment(this.state.dados.dataNascimento).format('DD/MM/YYYY') }</Text>
-                    <Text>{ this.state.dados.ufNascimento }</Text>
-                    <Text>{ this.state.dados.id }</Text>
-                    <Text>{ this.state.dados.municipioNascimento }</Text>
-                    <Text><Icon name='usd' size={14}/> Total de Gastos 2019-2022: R$ {this.state.valorTotal}</Text>
+                    <View style={styles.deputadoContainer}>
+                        <Text style={styles.palavraNegrito}>Dados Pessoais: </Text>
+                        <Text style={styles.fontColor}>Nome Civil: { this.state.dados.nomeCivil }</Text>
+                        <Text>Nome Eleitoral: { this.state.status.nomeEleitoral }</Text> 
+                        <Text>UF do Partido: { this.state.status.siglaUf }</Text> 
+                        <Text>Sigla Partido: { this.state.status.siglaPartido }</Text> 
+                        <Text>Situação do Parlamentar: { this.state.status.situacao }</Text>
+                        <Text>Condição Eleitoral: { this.state.status.condicaoEleitoral }</Text>
+                        <Text style={styles.separandoItens}>Nascimento: { moment(this.state.dados.dataNascimento).format('DD/MM/YYYY') } { this.state.dados.municipioNascimento }, { this.state.dados.ufNascimento }</Text>
+
+                        <Text style={styles.palavraNegrito} size={20}>CONTATO:</Text>
+                        <Text><Icon name='phone'size={14}/> {this.state.gabinete.telefone}</Text> 
+                        <Text style={styles.separandoItens}><Icon name='envelope-o' size={14}/> { this.state.gabinete.email }</Text>    
                     
-                </View>
+                        <Text style={styles.palavraNegrito} size={20}>GASTOS:</Text>
+                        <Text style={styles.palavraNegrito}><Icon name='usd' size={14}/> Total de Gastos 2019-2022: </Text>
+                        <Text>R$ {this.state.valorTotal}</Text>
+                        <Text style={styles.palavraNegrito}>Principal Despesa:</Text>
+                        <Text>{this.state.valorTotalDespesas}</Text>
+                     </View>
+                </ScrollView>
         );
     }
 }
@@ -91,8 +101,8 @@ const styles = StyleSheet.create({
         padding: 20
     },
     imagemCentro: {
-        left: 80,
-        width:150, 
+        left: 100,
+        width: 150, 
         height: 195,
         backgroundColor: '#8A2BE2',
         borderWidth: 1,
@@ -100,7 +110,13 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     productContainer: {
-        backgroundColor: '#EEE',
+        backgroundColor: '#8A2BE2',
+        borderWidth: 1,
+        borderColor: '#8A2BE2',
+        borderRadius: 0
+    },
+    deputadoContainer: {
+        backgroundColor: '#fafafa',
         borderWidth: 1,
         borderColor: '#8A2BE2',
         borderRadius: 5,
@@ -133,6 +149,12 @@ const styles = StyleSheet.create({
     productButtonText: {
         fontSize: 16,
         color: '#8A2BE2',
+        fontWeight: 'bold'
+    },
+    separandoItens:{
+        marginBottom: 10
+    },
+    palavraNegrito: {
         fontWeight: 'bold'
     }
 

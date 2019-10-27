@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Text, StyleSheet, ScrollView, View } from 'react-native';
 export default class projetoDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -53,6 +53,7 @@ export default class projetoDetalhado extends Component {
     render() {
         return (
             <ScrollView style={styles.productContainer}>
+                <View style={styles.detalhadoContainer}>
                 <Text style={styles.nomeProjeto}>{ this.state.dados.siglaTipo } { this.state.dados.numero }/{ this.state.dados.ano }</Text>
                 
                 <Text style={styles.palavraNegrito}>Ementa: </Text>
@@ -76,6 +77,7 @@ export default class projetoDetalhado extends Component {
                 <Text style={styles.separandoItens}>{ this.state.autores}</Text>
 
                 <Text style={styles.palavraNegrito}></Text>
+                </View>
             </ScrollView>
         );
     }
@@ -90,6 +92,11 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     productContainer: {
+        backgroundColor: '#8A2BE2',
+        borderColor: '#8A2BE2',
+        padding: 20
+    },
+    detalhadoContainer: {
         backgroundColor: '#EEE',
         borderWidth: 1,
         borderColor: '#8A2BE2',
