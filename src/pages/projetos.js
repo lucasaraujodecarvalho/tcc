@@ -57,7 +57,7 @@ export default class Projetos extends Component {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#fafafa'
+        backgroundColor: '#8A2BE2'
     },
     list: {
         padding: 20
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     productContainer: {
         backgroundColor: '#EEE',
         borderWidth: 1,
-        borderColor: '#0066ff',
         borderRadius: 5,
         padding: 20,
         marginBottom: 20

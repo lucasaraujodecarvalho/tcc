@@ -51,12 +51,12 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#fafafa'
+        backgroundColor: '#8A2BE2'
     },
     productContainer: {
-        backgroundColor: '#0066ff',
+        backgroundColor: '#fafafa',
         borderWidth: 1,
-        borderColor: '#0066ff',
+        borderColor: '#8A2BE2',
         borderRadius: 5,
         padding: 20,
         marginBottom: 10
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height
       },
     title: {
-        color: "#0066ff",
+        color: "#8A2BE2",
         marginTop: 50,
         padding: 10,
         textAlign: "center",
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         lineHeight: 30
       },
     text: {
-        color: "#FFFFFF",
+        color: "#8A2BE2",
         textAlign: "center",
         fontSize: 20
       }

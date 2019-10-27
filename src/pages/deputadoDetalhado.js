@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import api from '../services/api';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import moment from 'moment';
 export default class DeputadoDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -57,21 +59,23 @@ export default class DeputadoDetalhado extends Component {
 
     render() {
         return (
-                <View>
+                <View style={styles.productContainer}>
                     <Image style={styles.imagemCentro}
                     source={{uri: this.state.status.urlFoto}}/>
                     <Text style={styles.nomeDeputado}>{ this.state.dados.nomeCivil }</Text>
                     <Text>{ this.state.status.nomeEleitoral }</Text> 
                     <Text>{ this.state.status.siglaUf }</Text> 
                     <Text>{ this.state.status.siglaPartido }</Text> 
-                    <Text>{ this.state.gabinete.telefone }</Text> 
-                    <Text>{ this.state.gabinete.email }</Text>      
+                    <Text><Icon name='phone'size={14}/> {this.state.gabinete.telefone}</Text> 
+                    <Text><Icon name='envelope-o' size={14}/> { this.state.gabinete.email }</Text>      
                     <Text>{ this.state.status.situacao }</Text>
                     <Text>{ this.state.status.condicaoEleitoral }</Text>
-                    <Text>{ this.state.dados.dataNascimento }</Text>
+                    <Text>{ moment(this.state.dados.dataNascimento).format('DD/MM/YYYY') }</Text>
                     <Text>{ this.state.dados.ufNascimento }</Text>
+                    <Text>{ this.state.dados.id }</Text>
                     <Text>{ this.state.dados.municipioNascimento }</Text>
-                    <Text> Total de Gastos em 2019: R$ {this.state.valorTotal}</Text>
+                    <Text><Icon name='usd' size={14}/> Total de Gastos 2019-2022: R$ {this.state.valorTotal}</Text>
+                    
                 </View>
         );
     }
@@ -87,23 +91,20 @@ const styles = StyleSheet.create({
         padding: 20
     },
     imagemCentro: {
-        left: 100,
-        width:160, 
+        left: 80,
+        width:150, 
         height: 195,
-        backgroundColor: '#0066ff',
+        backgroundColor: '#8A2BE2',
         borderWidth: 1,
-        borderColor: '#0066ff',
-        borderRadius: 5,
-        padding: 20,
-        marginBottom: 20
+        borderColor: '#8A2BE2',
+        borderRadius: 5
     },
     productContainer: {
         backgroundColor: '#EEE',
         borderWidth: 1,
-        borderColor: '#0066ff',
+        borderColor: '#8A2BE2',
         borderRadius: 5,
-        padding: 20,
-        marginBottom: 20
+        padding: 20
     },
     nomeDeputado: {
         fontSize: 16,
@@ -120,15 +121,18 @@ const styles = StyleSheet.create({
         height: 42,
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#0066ff',
+        borderColor: '#8A2BE2',
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10
     },
+    icones: {
+        padding: 20
+    },
     productButtonText: {
         fontSize: 16,
-        color: '#0066ff',
+        color: '#8A2BE2',
         fontWeight: 'bold'
     }
 

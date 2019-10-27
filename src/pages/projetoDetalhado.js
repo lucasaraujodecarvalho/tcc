@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 export default class projetoDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -14,7 +14,7 @@ export default class projetoDetalhado extends Component {
         this.state = {
             dados:[],
             status:[],
-            dadosAutores:[]
+            autores:[]
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         const { navigation } = this.props;
@@ -41,15 +41,18 @@ export default class projetoDetalhado extends Component {
     loadAutoresProjetos = async (navigation) => {
         const id =  navigation.getParam('id')
         let autores = await api.get(`/proposicoes/${id}/autores`)
-        const { dados } = autores.data;
-        let stateTemp = this.state;
-        stateTemp.dadosAutores = dados;
-        this.setState(stateTemp);
+        let nomeAutor;
+
+        for (let autor of autores.data.dados) {
+            nomeAutor = autor.nome;
+        }
+        this.state.autores = nomeAutor;
+        this.setState(this.state);
     }
 
     render() {
         return (
-            <View style={styles.productContainer}>
+            <ScrollView style={styles.productContainer}>
                 <Text style={styles.nomeProjeto}>{ this.state.dados.siglaTipo } { this.state.dados.numero }/{ this.state.dados.ano }</Text>
                 
                 <Text style={styles.palavraNegrito}>Ementa: </Text>
@@ -70,8 +73,10 @@ export default class projetoDetalhado extends Component {
 
                 <Text style={styles.palavraNegrito}>Autor do Projeto: </Text> 
                 
-                <Text style={styles.separandoItens}>{ this.state.dadosAutores.nome }</Text>
-            </View>
+                <Text style={styles.separandoItens}>{ this.state.autores}</Text>
+
+                <Text style={styles.palavraNegrito}></Text>
+            </ScrollView>
         );
     }
 }
@@ -81,17 +86,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fafafa'
     },
-    separandoItens:{ 
-        fontSize: 12,
+    separandoItens:{
         marginBottom: 20
     },
     productContainer: {
         backgroundColor: '#EEE',
         borderWidth: 1,
-        borderColor: '#0066ff',
+        borderColor: '#8A2BE2',
         borderRadius: 5,
-        padding: 20,
-        marginBottom: 20
+        padding: 20
     },
     nomeProjeto: {
         fontSize: 16,

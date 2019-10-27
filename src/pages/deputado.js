@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import api from '../services/api';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 
 export default class Deputado extends Component {
     static navigationOptions = {
@@ -58,15 +59,14 @@ export default class Deputado extends Component {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#fafafa'
+        backgroundColor: '#8A2BE2'
     },
     list: {
         padding: 20
     },
     productContainer: {
-        backgroundColor: '#EEE',
+        backgroundColor: '#fafafa',
         borderWidth: 1,
-        borderColor: '#0066ff',
         borderRadius: 5,
         padding: 20,
         marginBottom: 20
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         height: 42,
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#0066ff',
+        borderColor: '#8A2BE2',
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     productButtonText: {
         fontSize: 16,
-        color: '#0066ff',
+        color: '#8A2BE2',
         fontWeight: 'bold'
     }
 
