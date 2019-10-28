@@ -9,41 +9,38 @@ export default class Main extends Component {
 
     render() {
         return (
-            console.disableYellowBox = true,
-            <ScrollView contentContainerStyle={styles.contentContainer}>
             <View
-              style={[styles.linearGradient, styles.container]}>
-              <Text style={styles.title}></Text>
+                style={[styles.linearGradient, styles.container, styles.contentContainer]}>
+                <Text style={styles.title}></Text>
     
-            <TouchableOpacity style={styles.productContainer}
-                onPress={() => {
-                    this.props.navigation.navigate('Deputado');
-            }}>
+                <TouchableOpacity style={styles.productContainer}
+                    onPress={() => {
+                        this.props.navigation.navigate('Deputado');
+                    }}>
                 <Text style={styles.text}>Deputados Federais</Text>
-            </TouchableOpacity>
+                </TouchableOpacity>
               
-            <TouchableOpacity style={styles.productContainer}
-                onPress={() => {
-                    this.props.navigation.navigate('Senador');
-            }}>
-                <Text style={styles.text}>Senadores</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.productContainer}
+                    onPress={() => {
+                        this.props.navigation.navigate('Senador');
+                    }}>
+                    <Text style={styles.text}>Senadores</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.productContainer}
-                onPress={() => {
+                <TouchableOpacity style={styles.productContainer}
+                    onPress={() => {
                     this.props.navigation.navigate('Projetos');
-            }}>
-                <Text style={styles.text}>Projetos</Text>
-            </TouchableOpacity>
+                    }}>
+                    <Text style={styles.text}>Projetos</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.productContainer}
-                onPress={() => {
-                    this.props.navigation.navigate('Login');
-            }}>
-                <Text style={styles.text}>Login</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.productContainer}
+                    onPress={() => {
+                        this.props.navigation.navigate('Login');
+                    }}>
+                    <Text style={styles.text}>Login</Text>
+                </TouchableOpacity>
             </View>
-          </ScrollView>
         );
     }
 }
