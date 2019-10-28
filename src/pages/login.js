@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Text } from 'react-native';
 
-const Gastos = (navigation) => (
+const Login = (navigation) => (
     <Text>TESTE DO TESTE</Text>
 );
 
-export default Gastos;
+export default Login;

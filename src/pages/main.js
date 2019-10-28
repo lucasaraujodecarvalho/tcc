@@ -38,9 +38,9 @@ export default class Main extends Component {
 
             <TouchableOpacity style={styles.productContainer}
                 onPress={() => {
-                    this.props.navigation.navigate('Gastos');
+                    this.props.navigation.navigate('Login');
             }}>
-                <Text style={styles.text}>Gastos</Text>
+                <Text style={styles.text}>Login</Text>
             </TouchableOpacity>
             </View>
           </ScrollView>

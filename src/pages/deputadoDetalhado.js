@@ -46,7 +46,7 @@ export default class DeputadoDetalhado extends Component {
 
     loadDeputadosGastos = async (navigation) => {
         const id =  navigation.getParam('id')
-        let deputado = await api.get(`/deputados/${id}/despesas`)
+        let deputado = await api.get(`/deputados/${id}/despesas?ano=2019&itens=100`)
         let totalGastos = 0;
         let totalDespesas = ""
                 

@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import Main from './pages/main';
 import Deputado from './pages/deputado';
 import DeputadoDetalhado from './pages/deputadoDetalhado';
-import Gastos from './pages/gastos';
+import Login from './pages/login';
 import Projetos from './pages/projetos';
 import Senador from './pages/senador';
 import ProjetoDetalhado from './pages/projetoDetalhado';
@@ -11,7 +11,7 @@ import ProjetoDetalhado from './pages/projetoDetalhado';
 export default createStackNavigator ({
     Main,
     Deputado,
-    Gastos,
+    Login,
     Projetos,
     Senador,
     DeputadoDetalhado,
