@@ -9,6 +9,7 @@ export default class Main extends Component {
 
     render() {
         return (
+            console.disableYellowBox = true,
             <View
                 style={[styles.linearGradient, styles.container, styles.contentContainer]}>
                 <Text style={styles.title}></Text>

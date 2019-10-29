@@ -18,7 +18,30 @@ export default class DeputadoDetalhado extends Component {
             status:[],
             gabinete:[],
             valorTotal:[],
-            valorTotalDespesas:[]
+            valorTotalDespesasManutencao:[],
+            tipoDespesaManutencao:[],
+            valorTotalDespesasCombustivel:[],
+            tipoDespesaCombustivel:[],
+            valorTotalDespesasDivulgacao:[],
+            tipoDespesaDivulgacao:[],
+            valorTotalDespesasTelefonia:[],
+            tipoDespesaTelefonia:[],
+            valorTotalDespesasServicosPostais:[],
+            tipoDespesaServicosPostais:[],
+            valorTotalDespesasFornecimento:[],
+            tipoDespesaFornecimento:[],
+            valorTotalDespesasEmissao:[],
+            tipoDespesaEmissao:[],
+            valorTotalDespesasHospedagem:[],
+            tipoDespesaHospedagem:[],
+            valorTotalDespesasServico:[],
+            tipoDespesaServico:[],
+            valorTotalDespesasLocacao:[],
+            tipoDespesaLocacao:[],
+            valorTotalDespesasConsultorias:[],
+            tipoDespesaConsultorias:[],
+            valorTotalDespesasPassagens:[],
+            tipoDespesaPassagens:[]
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         const { navigation } = this.props;
@@ -48,16 +71,109 @@ export default class DeputadoDetalhado extends Component {
         const id =  navigation.getParam('id')
         let deputado = await api.get(`/deputados/${id}/despesas?ano=2019&itens=100`)
         let totalGastos = 0;
-        let totalDespesas = ""
+        let tipoDespesasManutencao = '';
+        let totalGastosManutencao = 0;
+        let tipoDespesasCombustivel = '';
+        let totalGastosCombustivel = 0;
+        let tipoDespesasDivulgacao = '';
+        let totalGastosDivulgacao = 0;
+        let tipoDespesasTelefonia = '';
+        let totalGastosTelefonia = 0;
+        let tipoDespesasServicosPostais = '';
+        let totalGastosServicosPostais = 0;
+        let tipoDespesasFornecimento = '';
+        let totalGastosFornecimento = 0;
+        let tipoDespesasEmissao = '';
+        let totalGastosEmissao = 0;
+        let tipoDespesasHospedagem = '';
+        let totalGastosHospedagem = 0;
+        let tipoDespesasServico = '';
+        let totalGastosServico = 0;
+        let tipoDespesasLocacao = '';
+        let totalGastosLocacao = 0;
+        let tipoDespesasConsultorias = '';
+        let totalGastosConsultorias = 0;
+        let tipoDespesasPassagens = '';
+        let totalGastosPassagens = 0;
                 
         for (let gasto of deputado.data.dados) {
             if(gasto.ano == '2019'){
                 totalGastos += gasto.valorLiquido; 
-                totalDespesas = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR'){
+                totalGastosManutencao += gasto.valorLiquido; 
+                tipoDespesasManutencao = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'COMBUSTÍVEIS E LUBRIFICANTES.'){
+                totalGastosCombustivel += gasto.valorLiquido; 
+                tipoDespesasCombustivel = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.'){
+                totalGastosDivulgacao += gasto.valorLiquido; 
+                tipoDespesasDivulgacao = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'TELEFONIA'){
+                totalGastosTelefonia += gasto.valorLiquido; 
+                tipoDespesasTelefonia = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'SERVIÇOS POSTAIS'){
+                totalGastosServicosPostais += gasto.valorLiquido; 
+                tipoDespesasServicosPostais = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR'){
+                totalGastosFornecimento += gasto.valorLiquido; 
+                tipoDespesasFornecimento = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'Emissão Bilhete Aéreo'){
+                totalGastosEmissao += gasto.valorLiquido; 
+                tipoDespesasEmissao = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.'){
+                totalGastosHospedagem += gasto.valorLiquido; 
+                tipoDespesasHospedagem = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO'){
+                totalGastosServico += gasto.valorLiquido; 
+                tipoDespesasServico = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES'){
+                totalGastosManutencao += gasto.valorLiquido; 
+                tipoDespesasManutencao = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'CONSULTORIAS, PESQUISAS E TRABALHOS TÉCNICOS.'){
+                totalGastosConsultorias += gasto.valorLiquido; 
+                tipoDespesasConsultorias = gasto.tipoDespesa;
+            }
+            if(gasto.tipoDespesa == 'PASSAGENS AÉREAS'){
+                totalGastosPassagens += gasto.valorLiquido; 
+                tipoDespesasPassagens = gasto.tipoDespesa;
             }
         }
         this.state.valorTotal = totalGastos;
-        this.state.valorTotalDespesas = totalDespesas;
+        this.state.valorTotalManutencao = totalGastosManutencao;
+        this.state.tipoDespesaManutencao = tipoDespesasManutencao;
+        this.state.valorTotalDespesasCombustivel = totalGastosCombustivel;
+        this.state.tipoDespesaCombustivel = tipoDespesasCombustivel;
+        this.state.valorTotalDespesasDivulgacao = totalGastosDivulgacao;
+        this.state.tipoDespesaDivulgacao = tipoDespesasDivulgacao;
+        this.state.valorTotalDespesasTelefonia = totalGastosTelefonia;
+        this.state.tipoDespesaTelefonia = tipoDespesasTelefonia;
+        this.state.valorTotalDespesasServicosPostais = totalGastosServicosPostais;
+        this.state.tipoDespesaServicosPostais = tipoDespesasServicosPostais;
+        this.state.valorTotalDespesasFornecimento = totalGastosFornecimento;
+        this.state.tipoDespesaFornecimento = tipoDespesasFornecimento;
+        this.state.valorTotalDespesasEmissao = totalGastosEmissao;
+        this.state.tipoDespesaEmissao = tipoDespesasEmissao;
+        this.state.valorTotalDespesasHospedagem = totalGastosHospedagem;
+        this.state.tipoDespesaHospedagem = tipoDespesasHospedagem;
+        this.state.valorTotalDespesasServico = totalGastosServico;
+        this.state.tipoDespesaServico = tipoDespesasServico;
+        this.state.valorTotalDespesasLocacao = totalGastosLocacao;
+        this.state.tipoDespesaLocacao = tipoDespesasLocacao;
+        this.state.valorTotalDespesasConsultorias = totalGastosConsultorias;
+        this.state.tipoDespesaConsultorias = tipoDespesasConsultorias;
+        this.state.valorTotalDespesasPassagens = totalGastosPassagens;
+        this.state.tipoDespesaPassagens = tipoDespesasPassagens;
         this.setState(this.state);
     }
 
@@ -83,8 +199,21 @@ export default class DeputadoDetalhado extends Component {
                         <Text style={styles.palavraNegrito} size={20}>GASTOS:</Text>
                         <Text style={styles.palavraNegrito}><Icon name='usd' size={14}/> Total de Gastos 2019-2022: </Text>
                         <Text>R$ {this.state.valorTotal}</Text>
-                        <Text style={styles.palavraNegrito}>Principal Despesa:</Text>
-                        <Text>{this.state.valorTotalDespesas}</Text>
+                        <Text style={styles.palavraNegrito}>Principais Despesas:</Text>
+                        
+                        { this.state.tipoDespesaManutencao ? <Text>{this.state.tipoDespesaManutencao}: {this.state.valorTotalManutencao}</Text> : null}
+                        { this.state.tipoDespesaCombustivel ? <Text>{this.state.tipoDespesaCombustivel}: {this.state.valorTotalDespesasCombustivel}</Text> : null}
+                        { this.state.tipoDespesaDivulgacao ? <Text>{this.state.tipoDespesaDivulgacao}: {this.state.valorTotalDespesasDivulgacao}</Text> : null}
+                        {this.state.tipoDespesaTelefonia ? <Text>{this.state.tipoDespesaTelefonia}: {this.state.valorTotalDespesasTelefonia}</Text> : null}
+                        {this.state.tipoDespesaServicosPostais ? <Text>{this.state.tipoDespesaServicosPostais}: {this.state.valorTotalDespesasServicosPostais}</Text> : null}
+                        {this.state.tipoDespesaFornecimento ? <Text>{this.state.tipoDespesaFornecimento}: {this.state.valorTotalDespesasFornecimento}</Text> : null}
+                        {this.state.tipoDespesaEmissao ? <Text>{this.state.tipoDespesaEmissao}: {this.state.valorTotalDespesasEmissao}</Text> : null}
+                        {this.state.tipoDespesaHospedagem ? <Text>{this.state.tipoDespesaHospedagem}: {this.state.valorTotalDespesasHospedagem}</Text> : null}
+                        {this.state.tipoDespesaServico ? <Text>{this.state.tipoDespesaServico}: {this.state.valorTotalDespesasServico}</Text> : null}
+                        {this.state.tipoDespesaLocacao ? <Text>{this.state.tipoDespesaLocacao}: {this.state.valorTotalDespesasLocacao}</Text> : null}
+                        {this.state.tipoDespesaConsultorias ? <Text>{this.state.tipoDespesaConsultorias}: {this.state.valorTotalDespesasConsultorias}</Text> : null}
+                        {this.state.tipoDespesaPassagens ? <Text>{this.state.tipoDespesaPassagens}: {this.state.valorTotalDespesasPassagens}</Text> : null}
+
                      </View>
                 </ScrollView>
         );
