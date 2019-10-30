@@ -68,9 +68,9 @@ export default class projetoDetalhado extends Component {
                 
                 <Text style={styles.separandoItens}>{ this.state.status.despacho }</Text> 
                 
-                <Text style={styles.palavraNegrito}>Ementa Detalhada: </Text> 
-                
-                <Text style={styles.separandoItens}>{ this.state.dados.ementaDetalhada }</Text>
+                {this.state.dados.ementaDetalhada ? <Text style={styles.palavraNegrito}>Ementa Detalhada: </Text> : null}
+
+                {this.state.dados.ementaDetalhada ? <Text style={styles.separandoItens}>{ this.state.dados.ementaDetalhada }</Text> : null}
 
                 <Text style={styles.palavraNegrito}>Autor do Projeto: </Text> 
                 
@@ -92,14 +92,14 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     productContainer: {
-        backgroundColor: '#8A2BE2',
-        borderColor: '#8A2BE2',
+        backgroundColor: '#fafafa',
+        borderColor: '#0066ff',
         padding: 20
     },
     detalhadoContainer: {
         backgroundColor: '#EEE',
         borderWidth: 1,
-        borderColor: '#8A2BE2',
+        borderColor: '#0066ff',
         borderRadius: 5,
         padding: 20
     },

@@ -201,9 +201,9 @@ export default class DeputadoDetalhado extends Component {
                         <Text>R$ {this.state.valorTotal}</Text>
                         <Text style={styles.palavraNegrito}>Principais Despesas:</Text>
                         
-                        { this.state.tipoDespesaManutencao ? <Text>{this.state.tipoDespesaManutencao}: {this.state.valorTotalManutencao}</Text> : null}
-                        { this.state.tipoDespesaCombustivel ? <Text>{this.state.tipoDespesaCombustivel}: {this.state.valorTotalDespesasCombustivel}</Text> : null}
-                        { this.state.tipoDespesaDivulgacao ? <Text>{this.state.tipoDespesaDivulgacao}: {this.state.valorTotalDespesasDivulgacao}</Text> : null}
+                        {this.state.tipoDespesaManutencao ? <Text>{this.state.tipoDespesaManutencao}: {this.state.valorTotalManutencao}</Text> : null}
+                        {this.state.tipoDespesaCombustivel ? <Text>{this.state.tipoDespesaCombustivel}: {this.state.valorTotalDespesasCombustivel}</Text> : null}
+                        {this.state.tipoDespesaDivulgacao ? <Text>{this.state.tipoDespesaDivulgacao}: {this.state.valorTotalDespesasDivulgacao}</Text> : null}
                         {this.state.tipoDespesaTelefonia ? <Text>{this.state.tipoDespesaTelefonia}: {this.state.valorTotalDespesasTelefonia}</Text> : null}
                         {this.state.tipoDespesaServicosPostais ? <Text>{this.state.tipoDespesaServicosPostais}: {this.state.valorTotalDespesasServicosPostais}</Text> : null}
                         {this.state.tipoDespesaFornecimento ? <Text>{this.state.tipoDespesaFornecimento}: {this.state.valorTotalDespesasFornecimento}</Text> : null}
@@ -233,21 +233,21 @@ const styles = StyleSheet.create({
         left: 100,
         width: 150, 
         height: 195,
-        backgroundColor: '#8A2BE2',
+        backgroundColor: '#0066ff',
         borderWidth: 1,
-        borderColor: '#8A2BE2',
+        borderColor: '#0066ff',
         borderRadius: 5
     },
     productContainer: {
-        backgroundColor: '#8A2BE2',
+        backgroundColor: '#fafafa',
         borderWidth: 1,
-        borderColor: '#8A2BE2',
+        borderColor: '#0066ff',
         borderRadius: 0
     },
     deputadoContainer: {
-        backgroundColor: '#fafafa',
+        backgroundColor: '#EEE',
         borderWidth: 1,
-        borderColor: '#8A2BE2',
+        borderColor: '#0066ff',
         borderRadius: 5,
         padding: 20
     },
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
         height: 42,
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#8A2BE2',
+        borderColor: '#0066ff',
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
     },
     productButtonText: {
         fontSize: 16,
-        color: '#8A2BE2',
+        color: '#0066ff',
         fontWeight: 'bold'
     },
     separandoItens:{

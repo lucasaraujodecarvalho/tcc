@@ -59,17 +59,18 @@ export default class Deputado extends Component {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#8A2BE2'
+        backgroundColor: '#fafafa'
     },
     list: {
         padding: 20
     },
     productContainer: {
-        backgroundColor: '#fafafa',
+        backgroundColor: '#EEE',
         borderWidth: 1,
         borderRadius: 5,
         padding: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        borderColor: '#0066ff',
     },
     nomeDeputado: {
         fontSize: 16,
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
         height: 42,
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#8A2BE2',
+        borderColor: '#fafafa',
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     },
     productButtonText: {
         fontSize: 16,
-        color: '#8A2BE2',
+        color: '#fafafa',
         fontWeight: 'bold'
     }
 
