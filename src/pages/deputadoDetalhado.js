@@ -3,6 +3,7 @@ import api from '../services/api';
 import { ScrollView, Text, Image, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
+import { TextMask } from 'react-native-masked-text'
 export default class DeputadoDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -198,21 +199,41 @@ export default class DeputadoDetalhado extends Component {
                     
                         <Text style={styles.palavraNegrito} size={20}>GASTOS:</Text>
                         <Text style={styles.palavraNegrito}><Icon name='usd' size={14}/> Total de Gastos 2019-2022: </Text>
-                        <Text>R$ {this.state.valorTotal}</Text>
+                        <TextMask type={'money'} value={this.state.valorTotal}>R$ </TextMask>
                         <Text style={styles.palavraNegrito}>Principais Despesas:</Text>
                         
-                        {this.state.tipoDespesaManutencao ? <Text>{this.state.tipoDespesaManutencao}: {this.state.valorTotalManutencao}</Text> : null}
-                        {this.state.tipoDespesaCombustivel ? <Text>{this.state.tipoDespesaCombustivel}: {this.state.valorTotalDespesasCombustivel}</Text> : null}
-                        {this.state.tipoDespesaDivulgacao ? <Text>{this.state.tipoDespesaDivulgacao}: {this.state.valorTotalDespesasDivulgacao}</Text> : null}
-                        {this.state.tipoDespesaTelefonia ? <Text>{this.state.tipoDespesaTelefonia}: {this.state.valorTotalDespesasTelefonia}</Text> : null}
-                        {this.state.tipoDespesaServicosPostais ? <Text>{this.state.tipoDespesaServicosPostais}: {this.state.valorTotalDespesasServicosPostais}</Text> : null}
-                        {this.state.tipoDespesaFornecimento ? <Text>{this.state.tipoDespesaFornecimento}: {this.state.valorTotalDespesasFornecimento}</Text> : null}
-                        {this.state.tipoDespesaEmissao ? <Text>{this.state.tipoDespesaEmissao}: {this.state.valorTotalDespesasEmissao}</Text> : null}
-                        {this.state.tipoDespesaHospedagem ? <Text>{this.state.tipoDespesaHospedagem}: {this.state.valorTotalDespesasHospedagem}</Text> : null}
-                        {this.state.tipoDespesaServico ? <Text>{this.state.tipoDespesaServico}: {this.state.valorTotalDespesasServico}</Text> : null}
-                        {this.state.tipoDespesaLocacao ? <Text>{this.state.tipoDespesaLocacao}: {this.state.valorTotalDespesasLocacao}</Text> : null}
-                        {this.state.tipoDespesaConsultorias ? <Text>{this.state.tipoDespesaConsultorias}: {this.state.valorTotalDespesasConsultorias}</Text> : null}
-                        {this.state.tipoDespesaPassagens ? <Text>{this.state.tipoDespesaPassagens}: {this.state.valorTotalDespesasPassagens}</Text> : null}
+                        {this.state.tipoDespesaManutencao ? <Text>Manutenção de Escritório de apoio á atividade parlamentar: </Text> : null}
+                        {this.state.tipoDespesaManutencao ? <TextMask  type={'money'} value={this.state.valorTotalManutencao}/> : null}
+
+                        {this.state.tipoDespesaCombustivel ? <Text>Divulgação da atividade parlamentar: </Text> : null}
+                        {this.state.tipoDespesaCombustivel ? <TextMask type={'money'} value={this.state.valorTotalDespesasCombustivel}/> : null}
+
+                        {this.state.tipoDespesaDivulgacao ? <Text>Telefonia: </Text> : null}
+                        {this.state.tipoDespesaDivulgacao ? <TextMask type={'money'} value={this.state.valorTotalDespesasDivulgacao}/> : null}
+
+                        {this.state.tipoDespesaTelefonia ? <Text>Serviços Postais: </Text> : null}
+                        {this.state.tipoDespesaTelefonia ? <TextMask type={'money'} value={this.state.valorTotalDespesasTelefonia}/> : null}
+
+                        {this.state.tipoDespesaServicosPostais ? <Text>Fornecimento de alimentação do parlamentar: </Text> : null}
+                        {this.state.tipoDespesaServicosPostais ? <TextMask type={'money'} value={this.state.valorTotalDespesasServicosPostais}>{this.state.tipoDespesaServicosPostais}</TextMask> : null}
+
+                        {this.state.tipoDespesaFornecimento ? <Text>Emissão bilhete aéreo: </Text> : null}
+                        {this.state.tipoDespesaFornecimento ? <TextMask type={'money'} value={this.state.valorTotalDespesasFornecimento}/> : null}
+
+                        {this.state.tipoDespesaEmissao ? <Text>Hospedagem, Exceto do parlamentar no Distrito Federal: </Text> : null}
+                        {this.state.tipoDespesaEmissao ? <TextMask type={'money'} value={this.state.valorTotalDespesasEmissao}/> : null}
+
+                        {this.state.tipoDespesaHospedagem ? <Text>Serviço de táxi, pedágio e estacionamento: </Text> : null}
+                        {this.state.tipoDespesaHospedagem ? <TextMask type={'money'} value={this.state.valorTotalDespesasHospedagem}/> : null}
+
+                        {this.state.tipoDespesaServico ? <Text>Locação ou fretamento de veículos automotores: </Text> : null}
+                        {this.state.tipoDespesaServico ? <TextMask type={'money'} value={this.state.valorTotalDespesasServico}/> : null}
+                        
+                        {this.state.tipoDespesaConsultorias ? <Text>Consultorias, pesquisas e trabalhos técnicos: </Text> : null}
+                        {this.state.tipoDespesaConsultorias ? <TextMask type={'money'} value={this.state.valorTotalDespesasConsultorias}/> : null}
+
+                        {this.state.tipoDespesaPassagens ? <Text>Passagens Aéreas: </Text> : null}
+                        {this.state.tipoDespesaPassagens ? <TextMask type={'money'} value={this.state.valorTotalDespesasPassagens}/> : null}
 
                      </View>
                 </ScrollView>
