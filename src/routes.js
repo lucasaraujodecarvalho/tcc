@@ -7,6 +7,7 @@ import Login from './pages/login';
 import Projetos from './pages/projetos';
 import Senador from './pages/senador';
 import ProjetoDetalhado from './pages/projetoDetalhado';
+import SenadorDetalhado from './pages/senadorDetalhado';
 
 export default createStackNavigator ({
     Main,
@@ -15,7 +16,8 @@ export default createStackNavigator ({
     Projetos,
     Senador,
     DeputadoDetalhado,
-    ProjetoDetalhado
+    ProjetoDetalhado,
+    SenadorDetalhado
 }, 
 {
     navigationOptions: {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 
 export default class Deputado extends Component {
     static navigationOptions = {
