@@ -17,11 +17,10 @@ export default class SenadorDetalhado extends Component {
             identificacaoParlamentar: [],
             dadosBasicosParlamentar: [],
             mandatoAtual: [],
-            // suplentes: [],
-            // primeiroSuplente:[],
-            // primeiroSuplenteNome: [],
-            // segundoSuplente: [],
-            // segundoSuplenteNome: []
+            primeiroSuplente:[],
+            primeiroSuplenteNome: [],
+            segundoSuplente: [],
+            segundoSuplenteNome: []
         }
         this.componentDidMount = this.componentDidMount.bind(this);
                 
@@ -30,7 +29,7 @@ export default class SenadorDetalhado extends Component {
     componentDidMount() { 
         const { navigation } = this.props;
         this.loadSenadores(navigation);
-        // this.loadSenadoresSuplentes(navigation);
+        this.loadSuplentes(navigation);
     }
 
     
@@ -38,39 +37,47 @@ export default class SenadorDetalhado extends Component {
         const CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
         let senadores = await api.get(`/senador/${CodigoParlamentar}.json`);
         const { Parlamentar } = senadores.data.DetalheParlamentar;
-        console.log(Parlamentar);
         let stateTemp = this.state;
 
         stateTemp.parlamentar = Parlamentar;
         stateTemp.identificacaoParlamentar = Parlamentar.IdentificacaoParlamentar;
         stateTemp.dadosBasicosParlamentar = Parlamentar.DadosBasicosParlamentar;
-        // stateTemp.suplentes = Parlamentar.MandatoAtual;
-
         this.setState(stateTemp);
         console.disableYellowBox = true;
     }
 
-    // loadSenadoresSuplentes = async (navigation) => {
-    //     const CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
-    //     let senadores = await api.get(`/senador/${CodigoParlamentar}.json`);
-    //     console.log(senadores);
+    loadSuplentes = async (navigation) => {
+        let CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
+        let parlamentarSuplente = await api.get(`/senador/${CodigoParlamentar}.json`);
+        let suplentePrimeiro;
+        let nomeParlamentarPrimeiro;
+        let suplenteSegundo;
+        let nomeParlamentarSegundo;
 
-    //     let suplentePrimeiro;
-    //     let nomeParlamentarPrimeiro;
-    //     let suplenteSegundo;
-    //     let nomeParlamentarSegundo;
+        for (let Parlamentar of parlamentarSuplente.data.DetalheParlamentar.Parlamentar.MandatoAtual.Suplentes.Suplente) {
+            if (Parlamentar.DescricaoParticipacao == '1º Suplente') {
+                suplentePrimeiro = Parlamentar.DescricaoParticipacao;
+                nomeParlamentarPrimeiro = Parlamentar.NomeParlamentar;
+            } else {
+                suplenteSegundo = Parlamentar.DescricaoParticipacao;
+                nomeParlamentarSegundo = Parlamentar.NomeParlamentar;
+            }
+        }
+       this.state.primeiroSuplente = suplentePrimeiro;
+       this.state.primeiroSuplenteNome = nomeParlamentarPrimeiro;
+       this.state.segundoSuplente = suplenteSegundo;
+       this.state.segundoSuplenteNome = nomeParlamentarSegundo;
+       this.setState(this.state);
+    }
 
-    //     for (let Parlamentar of senadores.data.DetalheParlamentar) {
-    //         if (Suplente.DescricaoParticipacao == '1º Suplente') {
-    //             suplentePrimeiro = Parlamentar.MandatoAtual.Suplentes.Suplente.DescricaoParticipacao;
-    //             nomeParlamentarPrimeiro = Parlamentar.MandatoAtual.Suplentes.Suplente.NomeParlamentar;
-    //         }
-    //         // suplenteSegundo = Suplente.DescricaoParticipacao;
-    //         // nomeParlamentarSegundo = Suplente.NomeParlamentar;
+    // loadMaterias = async (navigation) => {
+    //     let CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
+    //     let parlamentarSuplente = await api.get(`/senador/${CodigoParlamentar}.json`);
+
+    //     for (let Parlamentar of parlamentarSuplente.data.DetalheParlamentar.Parlamentar.Materia) {
 
     //     }
-    //    this.state.primeiroSuplente = suplentePrimeiro;
-    //    this.state.primeiroSuplenteNome = nomeParlamentarPrimeiro;
+
     //    this.setState(this.state);
     // }
 
@@ -91,7 +98,11 @@ export default class SenadorDetalhado extends Component {
                 <Text style={styles.palavraNegrito} size={20}>CONTATO:</Text>
                 <Text>Email: {this.state.identificacaoParlamentar.EmailParlamentar}</Text>
                 <Text  style={styles.separandoItens}>Endereço Parlamentar: {this.state.dadosBasicosParlamentar.EnderecoParlamentar}</Text>
-                {/* <Text>Teste: {this.state.suplentes.DescricaoParticipacao}</Text> */}
+                <Text>Suplentes:</Text>
+                <Text>{this.state.primeiroSuplente}</Text>
+                <Text>{this.state.primeiroSuplenteNome}</Text>
+                <Text>{this.state.segundoSuplente}</Text>
+                <Text>{this.state.segundoSuplenteNome}</Text>
                 </View>
             </ScrollView>
         );
