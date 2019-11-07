@@ -53,59 +53,6 @@ export default class Senador extends Component {
             </View>
         );
     }
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         nomeParlamentar:[],
-    //         codigoDoSenador:[],
-    //         nomeParlamentarVanderlan:[],
-    //         codigoDoSenadorVanderlan:[]
-    //     }
-    //     this.componentDidMount = this.componentDidMount.bind(this);
-    //     const { navigation } = this.props;
-    //     this.componentDidMount(navigation);
-        
-    // }
-
-    // componentDidMount() {
-    //     this.loadSenadores();
-    // }
-
-    // loadSenadores = async () => {
-    //     let senador = await api.get('/senador/lista/atual.json');
-    //     let nomeSenador = '';
-    //     let idSenador = 0;
-    //     let nomeVanderlan = '';
-    //     let idVanderlan = 0;
-
-    //     for (let parlamentar of senador.data.ListaParlamentarEmExercicio.Parlamentares.Parlamentar) {
-    //         if (parlamentar.IdentificacaoParlamentar.CodigoParlamentar == '5899') {
-    //             nomeVanderlan = parlamentar.IdentificacaoParlamentar.NomeParlamentar;
-    //             idVanderlan = parlamentar.IdentificacaoParlamentar.CodigoParlamentar;
-    //         }
-
-    //         nomeSenador = parlamentar.IdentificacaoParlamentar.NomeParlamentar;
-    //         idSenador = parlamentar.IdentificacaoParlamentar.CodigoParlamentar;
-    //     }
-    //     this.state.nomeParlamentarVanderlan = nomeVanderlan;
-    //     this.state.codigoDoSenadorVanderlan = idVanderlan;
-    //     this.state.nomeParlamentar = nomeSenador;
-    //     this.state.codigoDoSenador = idSenador;
-    //     this.setState(this.state);
-    //     console.disableYellowBox = true;
-    // }
-
-    // render() {
-    //     return (
-    //         <View style={styles.container}>
-    //             <Text>Nome Parlamentar: {this.state.nomeParlamentar}</Text>
-    //             <Text>Nome Parlamentar: {this.state.codigoDoSenador}</Text>
-    //             <Text>Nome Parlamentar: {this.state.nomeParlamentarVanderlan}</Text>
-    //             <Text>Nome Parlamentar: {this.state.codigoDoSenador}</Text>
-    //         </View>
-    //     );
-    // }
 }
 
 const styles = StyleSheet.create({

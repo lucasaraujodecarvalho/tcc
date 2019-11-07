@@ -29,7 +29,7 @@ export default class projetoDetalhado extends Component {
     loadProjetos = async (navigation) => {
         
         const id =  navigation.getParam('id')
-        let projetos = await api.get(`/proposicoes/${id}`)
+        let projetos = await api.get(`/proposicoes/${id}.json`)
         const { dados } = projetos.data;
         let stateTemp = this.state;
         stateTemp.dados = dados;

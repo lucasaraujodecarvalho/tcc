@@ -185,7 +185,7 @@ export default class DeputadoDetalhado extends Component {
                     source={{uri: this.state.status.urlFoto}}/>
                     <View style={styles.deputadoContainer}>
                         <Text style={styles.palavraNegrito}>Dados Pessoais: </Text>
-                        <Text style={styles.fontColor}>Nome Civil: { this.state.dados.nomeCivil }</Text>
+                        <Text>Nome Civil: { this.state.dados.nomeCivil }</Text>
                         <Text>Nome Eleitoral: { this.state.status.nomeEleitoral }</Text> 
                         <Text>UF do Partido: { this.state.status.siglaUf }</Text> 
                         <Text>Sigla Partido: { this.state.status.siglaPartido }</Text> 
