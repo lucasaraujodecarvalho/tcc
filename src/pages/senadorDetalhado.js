@@ -20,7 +20,9 @@ export default class SenadorDetalhado extends Component {
             primeiroSuplente:[],
             primeiroSuplenteNome: [],
             segundoSuplente: [],
-            segundoSuplenteNome: []
+            segundoSuplenteNome: [],
+            materia:[],
+            descricao:[]
         }
         this.componentDidMount = this.componentDidMount.bind(this);
                 
@@ -30,6 +32,7 @@ export default class SenadorDetalhado extends Component {
         const { navigation } = this.props;
         this.loadSenadores(navigation);
         this.loadSuplentes(navigation);
+        this.loadMaterias(navigation);
     }
 
     
@@ -70,16 +73,20 @@ export default class SenadorDetalhado extends Component {
        this.setState(this.state);
     }
 
-    // loadMaterias = async (navigation) => {
-    //     let CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
-    //     let parlamentarSuplente = await api.get(`/senador/${CodigoParlamentar}.json`);
+    loadMaterias = async (navigation) => {
+        let CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
+        let parlamentarSuplente = await api.get(`/senador/${CodigoParlamentar}.json`);
+        let materia = 0;
+        let descricao;
 
-    //     for (let Parlamentar of parlamentarSuplente.data.DetalheParlamentar.Parlamentar.Materia) {
-
-    //     }
-
-    //    this.setState(this.state);
-    // }
+        for (let Parlamentar of parlamentarSuplente.data.DetalheParlamentar.Parlamentar.MateriasDeAutoriaTramitando.Materia) {
+            materia = Parlamentar.EmentaMateria;
+            descricao = Parlamentar.IdentificacaoMateria.DescricaoIdentificacaoMateria;
+        }
+        this.state.materia = materia;
+        this.state.descricao = descricao;
+       this.setState(this.state);
+    }
 
     render() {
         return (
@@ -87,7 +94,7 @@ export default class SenadorDetalhado extends Component {
                 <Image style={styles.imagemCentro}
                     source={{uri: this.state.identificacaoParlamentar.UrlFotoParlamentar}}/>
                 <View style={styles.deputadoContainer}>
-                <Text style={styles.palavraNegrito}>Dados Pessoais: </Text>
+                <Text style={styles.palavraNegrito}>DADOS PESSOAIS: </Text>
                 <Text>Nome Parlamentar: {this.state.identificacaoParlamentar.NomeParlamentar}</Text>
                 <Text>Nome Completo: {this.state.identificacaoParlamentar.NomeCompletoParlamentar}</Text>
                 <Text>Sexo: {this.state.identificacaoParlamentar.SexoParlamentar}</Text>
@@ -98,11 +105,12 @@ export default class SenadorDetalhado extends Component {
                 <Text style={styles.palavraNegrito} size={20}>CONTATO:</Text>
                 <Text>Email: {this.state.identificacaoParlamentar.EmailParlamentar}</Text>
                 <Text  style={styles.separandoItens}>Endereço Parlamentar: {this.state.dadosBasicosParlamentar.EnderecoParlamentar}</Text>
-                <Text>Suplentes:</Text>
-                <Text>{this.state.primeiroSuplente}</Text>
-                <Text>{this.state.primeiroSuplenteNome}</Text>
-                <Text>{this.state.segundoSuplente}</Text>
-                <Text>{this.state.segundoSuplenteNome}</Text>
+                
+                <Text style={styles.palavraNegrito} size={20}>SUPLENTES:</Text>
+                <Text>{this.state.primeiroSuplente}: {this.state.primeiroSuplenteNome}</Text>
+                <Text>{this.state.segundoSuplente}: {this.state.segundoSuplenteNome}</Text>
+                {/* <Text>{this.state.materia}</Text>
+                <Text>{this.state.descricao}</Text> */}
                 </View>
             </ScrollView>
         );

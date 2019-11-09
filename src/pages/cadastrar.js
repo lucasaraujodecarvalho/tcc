@@ -7,7 +7,7 @@ import { Button } from 'react-native-elements';
 export default class Cadastrar extends Component {
 
     static navigationOptions = {
-        title: "Login",
+        title: "Cadastrar",
     };
 
     constructor(props) {
@@ -16,35 +16,35 @@ export default class Cadastrar extends Component {
          email: '',
          senha: ''
      };
-    this.logar = this.logar.bind(this);
+    this.cadastrar = this.cadastrar.bind(this);
      }
 
 
-     logar () {
+     cadastrar () {
         firebase.auth().onAuthStateChanged((user)=>{
             if (user) {
                 this.props.navigation.navigate('Main')
-                alert('Login com sucesso!');
+                alert('Cadastrado com sucesso!');
             }
         })
 
-
-         firebase.auth().signInWithEmailAndPassword(
+         firebase.auth().createUserWithEmailAndPassword(
              this.state.email, 
              this.state.senha
              ).catch((error)=>{
 
-                if (error.code == 'auth/wrong-password') {
-                    alert("Senha errada!");
+                if (error.code == 'auth/weak-password') {
+                    alert("Sua senha deve ter pelo menos 6 caracteres!");
+                }
+                if (error.code == 'auth/email-already-in-use') {
+                    alert('Este e-mail já possui uma conta.');
                 } else if (error.code == 'auth/invalid-email') {
-                    alert('E-mail invalido!')
+                    alert('E-mail inválido!')
                 } else {
-                    alert('Tente novamente mais tarde !');
+                    alert('Ocorreu um erro !');
                 }
              })
      }
-
-  
 
     render() {
         return (
@@ -55,8 +55,14 @@ export default class Cadastrar extends Component {
                    <Text>Senha:</Text>
                    <TextInput secureTextEntry={true} onChangeText={(senha)=>this.setState({senha})} style={styles.input}></TextInput>
 
-                   <Button title="Logar" onPress={this.logar} />
+                   <Button style={styles.separandoBotao} title="Cadastrar" onPress={this.cadastrar} />
 
+                   <TouchableOpacity style={styles.productContainer}
+                    onPress={() => {
+                    this.props.navigation.navigate('Login');
+                    }}>
+                    <Text style={styles.text}>Já tenho cadastro</Text>
+                    </TouchableOpacity>
                </View>
         );
     }

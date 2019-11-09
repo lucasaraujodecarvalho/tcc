@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
-
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import * as firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/database';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { Button } from 'react-native-elements';
 
 export default class Main extends Component {
     static navigationOptions = {
         title: "Portal Parlamentar"
     };
+
+    constructor(props){
+        super(props);
+        this.sair = this.sair.bind(this);
+    }
+
+    sair() {
+        firebase.auth().signOut();
+            this.props.navigation.navigate('Main')
+            alert('Logout com sucesso !');
+     }
 
     render() {
         return (
@@ -37,10 +51,12 @@ export default class Main extends Component {
 
                 <TouchableOpacity style={styles.productContainer}
                     onPress={() => {
-                        this.props.navigation.navigate('Login');
+                        this.props.navigation.navigate('Cadastrar');
                     }}>
-                    <Text style={styles.text}>Login</Text>
+                    <Text style={styles.text}>Cadastrar</Text>
                 </TouchableOpacity>
+
+                <Button title="Sair" onPress={this.sair} />
             </View>
         );
     }
