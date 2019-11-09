@@ -23,21 +23,19 @@ export default class Cadastrar extends Component {
      logar () {
         firebase.auth().onAuthStateChanged((user)=>{
             if (user) {
-                this.props.navigation.navigate('Main')
+                this.props.navigation.navigate('Main');
                 alert('Login com sucesso!');
             }
         })
-
 
          firebase.auth().signInWithEmailAndPassword(
              this.state.email, 
              this.state.senha
              ).catch((error)=>{
-
-                if (error.code == 'auth/wrong-password') {
+                if (error.code == 'auth/invalid-email') {
+                    alert('E-mail invalido!');
+                } else if (error.code == 'auth/wrong-password') {
                     alert("Senha errada!");
-                } else if (error.code == 'auth/invalid-email') {
-                    alert('E-mail invalido!')
                 } else {
                     alert('Tente novamente mais tarde !');
                 }

@@ -16,10 +16,9 @@ export default class Main extends Component {
     }
 
     sair() {
-        firebase.auth().signOut();
-            this.props.navigation.navigate('Main')
+            firebase.auth().signOut();
             alert('Logout com sucesso !');
-     }
+        }
 
     render() {
         return (
@@ -55,7 +54,7 @@ export default class Main extends Component {
                     }}>
                     <Text style={styles.text}>Cadastrar</Text>
                 </TouchableOpacity>
-
+                
                 <Button title="Sair" onPress={this.sair} />
             </View>
         );

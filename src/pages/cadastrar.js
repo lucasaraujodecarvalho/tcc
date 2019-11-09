@@ -21,29 +21,32 @@ export default class Cadastrar extends Component {
 
 
      cadastrar () {
-        firebase.auth().onAuthStateChanged((user)=>{
-            if (user) {
-                this.props.navigation.navigate('Main')
-                alert('Cadastrado com sucesso!');
-            }
-        })
-
-         firebase.auth().createUserWithEmailAndPassword(
-             this.state.email, 
-             this.state.senha
-             ).catch((error)=>{
-
-                if (error.code == 'auth/weak-password') {
-                    alert("Sua senha deve ter pelo menos 6 caracteres!");
+         if (this.state.email != '' && this.state.senha != '') {
+            firebase.auth().onAuthStateChanged((user)=>{
+                if (user) {
+                    this.props.navigation.navigate('Main')
+                    alert('Cadastrado com sucesso!');
                 }
-                if (error.code == 'auth/email-already-in-use') {
-                    alert('Este e-mail já possui uma conta.');
-                } else if (error.code == 'auth/invalid-email') {
-                    alert('E-mail inválido!')
-                } else {
-                    alert('Ocorreu um erro !');
-                }
-             })
+            })
+    
+             firebase.auth().createUserWithEmailAndPassword(
+                 this.state.email, 
+                 this.state.senha
+                 ).catch((error)=>{
+    
+                    if (error.code == 'auth/weak-password') {
+                        alert("Sua senha deve ter pelo menos 6 caracteres!");
+                    }
+                    if (error.code == 'auth/email-already-in-use') {
+                        alert('Este e-mail já possui uma conta.');
+                    } else if (error.code == 'auth/invalid-email') {
+                        alert('E-mail inválido!')
+                    } else {
+                        alert('Ocorreu um erro !');
+                    }
+                 })
+         }
+       
      }
 
     render() {

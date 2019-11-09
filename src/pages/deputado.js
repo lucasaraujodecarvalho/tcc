@@ -63,10 +63,11 @@ export default class Deputado extends Component {
         const {dadosSelect} = this.state;
         return (
             <View style={styles.container}>
-                
-                <Icon name="search" size={20} color="#0094FF"/><TextInput
-                onChangeText={this.handleSearch}
-                value={dadosSelect}></TextInput>
+                <TextInput
+                    onChangeText={this.handleSearch}
+                    value={dadosSelect} 
+                    placeholder="Pesquisar"
+                    style={styles.input}/>
                 
                 <FlatList
                     contentContainerStyle={styles.list}
@@ -87,6 +88,12 @@ const styles = StyleSheet.create({
     },
     list: {
         padding: 20
+    },
+    input:{
+        height:40,
+        borderWidth:1,
+        borderColor:'#0066ff',
+        margin:10
     },
     productContainer: {
         backgroundColor: '#EEE',

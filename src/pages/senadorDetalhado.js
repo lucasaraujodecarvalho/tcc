@@ -104,13 +104,15 @@ export default class SenadorDetalhado extends Component {
 
                 <Text style={styles.palavraNegrito} size={20}>CONTATO:</Text>
                 <Text>Email: {this.state.identificacaoParlamentar.EmailParlamentar}</Text>
-                <Text  style={styles.separandoItens}>Endereço Parlamentar: {this.state.dadosBasicosParlamentar.EnderecoParlamentar}</Text>
+                <Text style={styles.separandoItens}>Endereço Parlamentar: {this.state.dadosBasicosParlamentar.EnderecoParlamentar}</Text>
                 
                 <Text style={styles.palavraNegrito} size={20}>SUPLENTES:</Text>
                 <Text>{this.state.primeiroSuplente}: {this.state.primeiroSuplenteNome}</Text>
-                <Text>{this.state.segundoSuplente}: {this.state.segundoSuplenteNome}</Text>
-                {/* <Text>{this.state.materia}</Text>
-                <Text>{this.state.descricao}</Text> */}
+                <Text style={styles.separandoItens}>{this.state.segundoSuplente}: {this.state.segundoSuplenteNome}</Text>
+
+
+                <Text>{this.state.materia}</Text>
+                <Text>{this.state.descricao}</Text>
                 </View>
             </ScrollView>
         );
