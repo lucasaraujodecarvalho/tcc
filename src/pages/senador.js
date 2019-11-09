@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import api from '../services/apiSenado';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, ImageBackground } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import escapeRegExp from 'escape-string-regexp';
 
 export default class Senador extends Component {
     static navigationOptions = {
@@ -8,7 +10,9 @@ export default class Senador extends Component {
     };
 
     state = {
-        Parlamentar: []
+        Parlamentar: [],
+        search: '',
+        dadosSelect: []
     };
 
     componentDidMount() {
@@ -21,10 +25,23 @@ export default class Senador extends Component {
         const { Parlamentar } = response.data.ListaParlamentarEmExercicio.Parlamentares;
 
         this.setState({ 
-            Parlamentar:[...this.state.Parlamentar, ...Parlamentar]
+            Parlamentar:[...this.state.Parlamentar, ...Parlamentar],
+            dadosSelect:[...this.state.dadosSelect, ...Parlamentar]
         });
         console.disableYellowBox = true;
     }
+
+    handleSearch = search => {
+        const { Parlamentar } = this.state;
+        const match = new RegExp(escapeRegExp(search), 'i');
+    
+        const dadosSelect = Parlamentar.filter(_ => match.test(_.IdentificacaoParlamentar.NomeParlamentar));
+    
+        this.setState({ 
+            search,
+            dadosSelect:[...dadosSelect]
+        });
+      };
 
     renderItem = ({ item }) => (
         <TouchableOpacity style={styles.productContainer}
@@ -41,11 +58,15 @@ export default class Senador extends Component {
     )
 
     render() {
+        const {dadosSelect} = this.state;
         return (
             <View style={styles.container}>
+                <Icon name="search" size={20} color="#0094FF"/><TextInput
+                onChangeText={this.handleSearch}
+                value={dadosSelect}></TextInput>
                 <FlatList
                     contentContainerStyle={styles.list}
-                    data={this.state.Parlamentar}
+                    data={this.state.dadosSelect}
                     keyExtractor={item => item.id}
                     renderItem={this.renderItem}
                     onEndReachedThreshold={0.1}
