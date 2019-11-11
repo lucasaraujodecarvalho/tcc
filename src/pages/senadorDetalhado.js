@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import api from '../services/apiSenado';
-import { Text, StyleSheet, ScrollView, View, Image } from 'react-native';
+import { Text, StyleSheet, ScrollView, View, Image, TouchableOpacity } from 'react-native';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 export default class SenadorDetalhado extends Component {
 
@@ -73,10 +74,17 @@ export default class SenadorDetalhado extends Component {
        this.setState(this.state);
     }
 
+    favoritar() {
+        alert('Favoritou!');
+    }
+
     render() {
         return (
             <ScrollView style={styles.productContainer}>
-                <Button title="Favoritar"/>
+                 {/* <Icon name='star' size={30}></Icon> */}
+                <TouchableOpacity onPress={this.favoritar}>
+                <Icon name='star-o' size={30}></Icon>
+                </TouchableOpacity>
                 <Image style={styles.imagemCentro}
                     source={{uri: this.state.identificacaoParlamentar.UrlFotoParlamentar}}/>
                 <View style={styles.deputadoContainer}>

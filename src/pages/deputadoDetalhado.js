@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { ScrollView, Text, Image, StyleSheet, View } from 'react-native';
+import { ScrollView, Text, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 import { TextMask } from 'react-native-masked-text';
@@ -186,7 +186,10 @@ export default class DeputadoDetalhado extends Component {
     render() {
         return (
                 <ScrollView style={styles.productContainer}>
-                    <Button title="Favoritar" onPress={this.favoritar}/>
+                    {/* <Icon name='star' size={30}></Icon> */}
+                    <TouchableOpacity onPress={this.favoritar}>
+                    <Icon name='star-o' size={30}></Icon>
+                    </TouchableOpacity>
                     <Image style={styles.imagemCentro}
                     source={{uri: this.state.status.urlFoto}}/>
                     <View style={styles.deputadoContainer}>
