@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import api from '../services/apiSenado';
 import { Text, StyleSheet, ScrollView, View, Image } from 'react-native';
 import moment from 'moment';
+import { Button } from 'react-native-elements';
 export default class SenadorDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -32,7 +33,6 @@ export default class SenadorDetalhado extends Component {
         const { navigation } = this.props;
         this.loadSenadores(navigation);
         this.loadSuplentes(navigation);
-        this.loadMaterias(navigation);
     }
 
     
@@ -73,24 +73,10 @@ export default class SenadorDetalhado extends Component {
        this.setState(this.state);
     }
 
-    loadMaterias = async (navigation) => {
-        let CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
-        let parlamentarSuplente = await api.get(`/senador/${CodigoParlamentar}.json`);
-        let materia = 0;
-        let descricao;
-
-        for (let Parlamentar of parlamentarSuplente.data.DetalheParlamentar.Parlamentar.MateriasDeAutoriaTramitando.Materia) {
-            materia = Parlamentar.EmentaMateria;
-            descricao = Parlamentar.IdentificacaoMateria.DescricaoIdentificacaoMateria;
-        }
-        this.state.materia = materia;
-        this.state.descricao = descricao;
-       this.setState(this.state);
-    }
-
     render() {
         return (
             <ScrollView style={styles.productContainer}>
+                <Button title="Favoritar"/>
                 <Image style={styles.imagemCentro}
                     source={{uri: this.state.identificacaoParlamentar.UrlFotoParlamentar}}/>
                 <View style={styles.deputadoContainer}>
@@ -109,10 +95,6 @@ export default class SenadorDetalhado extends Component {
                 <Text style={styles.palavraNegrito} size={20}>SUPLENTES:</Text>
                 <Text>{this.state.primeiroSuplente}: {this.state.primeiroSuplenteNome}</Text>
                 <Text style={styles.separandoItens}>{this.state.segundoSuplente}: {this.state.segundoSuplenteNome}</Text>
-
-
-                <Text>{this.state.materia}</Text>
-                <Text>{this.state.descricao}</Text>
                 </View>
             </ScrollView>
         );

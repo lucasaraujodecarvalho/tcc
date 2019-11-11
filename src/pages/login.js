@@ -17,14 +17,21 @@ export default class Cadastrar extends Component {
          senha: ''
      };
     this.logar = this.logar.bind(this);
-     }
+    firebase.auth().onAuthStateChanged((user)=>{
+        if (user) {
+            this.props.navigation.navigate('Main');
+        } else{
+            this.props.navigation.navigate('Login');
+        }
+    })
+    console.disableYellowBox = true;
+    }
 
 
      logar () {
         firebase.auth().onAuthStateChanged((user)=>{
             if (user) {
                 this.props.navigation.navigate('Main');
-                alert('Login com sucesso!');
             }
         })
 
@@ -54,6 +61,13 @@ export default class Cadastrar extends Component {
                    <TextInput secureTextEntry={true} onChangeText={(senha)=>this.setState({senha})} style={styles.input}></TextInput>
 
                    <Button title="Logar" onPress={this.logar} />
+
+                   <TouchableOpacity style={styles.productContainer}
+                    onPress={() => {
+                    this.props.navigation.navigate('Cadastrar');
+                    }}>
+                    <Text style={styles.text}>Não tenho cadastro</Text>
+                    </TouchableOpacity>
 
                </View>
         );

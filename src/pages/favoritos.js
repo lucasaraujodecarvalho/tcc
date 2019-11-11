@@ -5,20 +5,14 @@ import 'firebase/database';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 
-export default class Main extends Component {
+export default class Favoritos extends Component {
     static navigationOptions = {
-        title: "Portal Parlamentar"
+        title: "Favoritos"
     };
 
     constructor(props){
         super(props);
-        this.sair = this.sair.bind(this);
         console.disableYellowBox = true;
-    }
-
-    sair() {
-        firebase.auth().signOut();
-        this.props.navigation.navigate('Login');
     }
 
     render() {
@@ -29,33 +23,17 @@ export default class Main extends Component {
     
                 <TouchableOpacity style={styles.productContainer}
                     onPress={() => {
-                        this.props.navigation.navigate('Deputado');
+                        this.props.navigation.navigate('DeputadosFavoritos');
                     }}>
                 <Text style={styles.text}>Deputados Federais</Text>
                 </TouchableOpacity>
               
                 <TouchableOpacity style={styles.productContainer}
                     onPress={() => {
-                        this.props.navigation.navigate('Senador');
+                        this.props.navigation.navigate('SenadoresFavoritos');
                     }}>
                     <Text style={styles.text}>Senadores</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity style={styles.productContainer}
-                    onPress={() => {
-                    this.props.navigation.navigate('Projetos');
-                    }}>
-                    <Text style={styles.text}>Projetos</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.productContainer}
-                    onPress={() => {
-                    this.props.navigation.navigate('Favoritos');
-                    }}>
-                    <Text style={styles.text}>Favoritos</Text>
-                </TouchableOpacity>
-
-                <Button style={styles.corBotao} title="Sair" onPress={this.sair} />
             </View>
         );
     }

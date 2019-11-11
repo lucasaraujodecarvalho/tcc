@@ -9,17 +9,23 @@ import Senador from './pages/senador';
 import ProjetoDetalhado from './pages/projetoDetalhado';
 import SenadorDetalhado from './pages/senadorDetalhado';
 import Login from './pages/login';
+import Favoritos from './pages/favoritos';
+import DeputadosFavoritos from './pages/deputadosFavoritos';
+import SenadoresFavoritos from './pages/senadoresFavoritos';
 
 export default createStackNavigator ({
+    Login,
+    Cadastrar,
     Main,
     Deputado,
-    Cadastrar,
     Projetos,
     Senador,
     DeputadoDetalhado,
     ProjetoDetalhado,
     SenadorDetalhado,
-    Login
+    Favoritos,
+    DeputadosFavoritos,
+    SenadoresFavoritos
 }, 
 {
     navigationOptions: {

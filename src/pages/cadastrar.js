@@ -17,7 +17,8 @@ export default class Cadastrar extends Component {
          senha: ''
      };
     this.cadastrar = this.cadastrar.bind(this);
-     }
+    console.disableYellowBox = true;
+    }
 
 
      cadastrar () {

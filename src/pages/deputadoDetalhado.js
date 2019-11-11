@@ -3,7 +3,8 @@ import api from '../services/api';
 import { ScrollView, Text, Image, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
-import { TextMask } from 'react-native-masked-text'
+import { TextMask } from 'react-native-masked-text';
+import { Button } from 'react-native-elements';
 export default class DeputadoDetalhado extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -178,9 +179,14 @@ export default class DeputadoDetalhado extends Component {
         this.setState(this.state);
     }
 
+    favoritar() {
+        alert('Favoritou!');
+    }
+
     render() {
         return (
                 <ScrollView style={styles.productContainer}>
+                    <Button title="Favoritar" onPress={this.favoritar}/>
                     <Image style={styles.imagemCentro}
                     source={{uri: this.state.status.urlFoto}}/>
                     <View style={styles.deputadoContainer}>
