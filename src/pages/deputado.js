@@ -22,9 +22,7 @@ export default class Deputado extends Component {
 
     loadDeputados = async () => {
         const response = await api.get('/deputados');
-
         const { dados } = response.data;
-
         this.setState({ 
             dados:[...this.state.dados, ...dados],
             dadosSelect:[...this.state.dadosSelect, ...dados]
@@ -35,9 +33,7 @@ export default class Deputado extends Component {
     handleSearch = search => {
         const { dados } = this.state;
         const match = new RegExp(escapeRegExp(search), 'i');
-    
         const dadosSelect = dados.filter(_ => match.test(_.nome));
-    
         this.setState({ 
             search,
             dadosSelect:[...dadosSelect]

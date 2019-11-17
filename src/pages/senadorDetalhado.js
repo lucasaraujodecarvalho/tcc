@@ -23,8 +23,8 @@ export default class SenadorDetalhado extends Component {
             primeiroSuplenteNome: [],
             segundoSuplente: [],
             segundoSuplenteNome: [],
-            materia:[],
-            descricao:[]
+            voto:[],
+            descricaoVoto:[]
         }
         this.componentDidMount = this.componentDidMount.bind(this);
                 
@@ -34,6 +34,7 @@ export default class SenadorDetalhado extends Component {
         const { navigation } = this.props;
         this.loadSenadores(navigation);
         this.loadSuplentes(navigation);
+        this.loadVotacoes(navigation);
     }
 
     
@@ -74,6 +75,26 @@ export default class SenadorDetalhado extends Component {
        this.setState(this.state);
     }
 
+    // loadVotacoes = async (navigation) => {
+    //     let CodigoParlamentar =  navigation.getParam('CodigoParlamentar')
+    //     let parlamentarVoto = await api.get(`/senador/${CodigoParlamentar}/votacoes.json`);
+    //     let voto;
+    //     let descricao;
+
+    //     for (let Parlamentar of parlamentarVoto.data.VotacaoParlamentar.Parlamentar.Votacoes.Votacao) {
+    //         var obj = { Parlamentar };
+    //         var val1 = obj[Object.keys(obj)[0]];
+    //         // var val2 = obj[Object.keys(obj)[1]];
+    //         // console.log('ssssssssss');
+    //         // console.log(val2);
+    //         val1 = Parlamentar.DescricaoVotacao;
+    //         descricao = Parlamentar.SiglaDescricaoVoto;
+    //     }
+    //     this.state.voto = val1;
+    //     this.state.descricao = descricao;
+    //    this.setState(this.state);
+    // }
+
     favoritar() {
         alert('Favoritou!');
     }
@@ -103,6 +124,8 @@ export default class SenadorDetalhado extends Component {
                 <Text style={styles.palavraNegrito} size={20}>SUPLENTES:</Text>
                 <Text>{this.state.primeiroSuplente}: {this.state.primeiroSuplenteNome}</Text>
                 <Text style={styles.separandoItens}>{this.state.segundoSuplente}: {this.state.segundoSuplenteNome}</Text>
+                {/* <Text style={styles.palavraNegrito} size={20}>VOTACÕES:</Text>
+                <Text>{this.state.voto}</Text> */}
                 </View>
             </ScrollView>
         );

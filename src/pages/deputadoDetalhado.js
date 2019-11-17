@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../services/api';
-import { ScrollView, Text, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, Image, StyleSheet, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 import { TextMask } from 'react-native-masked-text';
@@ -48,9 +48,7 @@ export default class DeputadoDetalhado extends Component {
         this.componentDidMount = this.componentDidMount.bind(this);
         const { navigation } = this.props;
         this.componentDidMount(navigation);
-        
     }
-    
 
     componentDidMount(navigation) {
         this.loadDeputados(navigation);
@@ -58,7 +56,6 @@ export default class DeputadoDetalhado extends Component {
     }
 
     loadDeputados = async (navigation) => {
-        
         const id =  navigation.getParam('id')
         let deputado = await api.get(`/deputados/${id}`)
         const { dados } = deputado.data;
@@ -179,7 +176,18 @@ export default class DeputadoDetalhado extends Component {
         this.setState(this.state);
     }
 
-    favoritar() {
+    favoritar = async () => {
+        let deputadoCheckin = JSON.parse(
+            await AsyncStorage.getItem('deputadoCheckin')
+        );
+        if (deputadoCheckin) {
+            deputadoCheckin = [...deputadoCheckin, novoDeputadoPraSerFavorito]
+            alert('Favoritou!');
+        } else {
+            deputadoCheckin = [novoDeputadoPraSerFavorito]
+            alert('Favoritou!');
+        }
+        await AsyncStorage.setItem('deputadoCheckin', deputadoCheckin)
         alert('Favoritou!');
     }
 
