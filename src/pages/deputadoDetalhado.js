@@ -206,6 +206,7 @@ export default class DeputadoDetalhado extends Component {
       deputadoCheckin = [novoDeputadoPraSerFavorito];
       alert('Favoritou!');
     }
+    deputadoCheckin = JSON.stringify(deputadoCheckin);
     await AsyncStorage.setItem('deputadoCheckin', deputadoCheckin);
     alert('Favoritou!');
   };

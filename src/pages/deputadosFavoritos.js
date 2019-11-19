@@ -31,22 +31,18 @@ export default class DeputadosFavoritos extends Component {
   }
 
   setDeputadoCheckin = async () => {
-    console.log('cheguei no set Deputado');
-    console.log('==========================================');
-    console.log(dados);
     let dados = await AsyncStorage.getItem('deputadoCheckin');
-    console.log(dados);
     if (dados) {
       dados = JSON.parse(dados);
     } else {
       dados = [];
     }
-    console.log('estou aqui');
     this.setState({
       dados: [...this.state.dados, ...dados],
       dadosSelect: [...this.state.dadosSelect, ...dados],
     });
     console.disableYellowBox = true;
+    console.log(dados);
   };
 
   handleSearch = search => {
@@ -65,15 +61,15 @@ export default class DeputadosFavoritos extends Component {
       onPress={() => {
         this.props.navigation.navigate('DeputadoDetalhado', {
           id: item.id,
-          nome: item.nome,
+          nome: item.ultimoStatus.nome,
         });
       }}>
       <ImageBackground
         style={{width: 125, height: 125}}
-        source={{uri: item.urlFoto}}>
-        <Text style={styles.nomeDeputado}>{item.nome}</Text>
+        source={{uri: item.ultimoStatus.urlFoto}}>
+        <Text style={styles.nomeDeputado}>{item.ultimoStatus.nome}</Text>
         <Text style={styles.productDescription}>
-          {item.siglaPartido}/{item.siglaUf}
+          {item.ultimoStatus.siglaPartido}/{item.ultimoStatus.siglaUf}
         </Text>
       </ImageBackground>
     </TouchableOpacity>
